@@ -15,6 +15,7 @@ import java.awt.Rectangle;
  *
  * @author user
  */
+// ? Cannot find
 public abstract class Hazard extends MapPoint {
 
     public Hazard(int x, int y, String file) {
