@@ -75,16 +75,16 @@ public class LevelManager {
 
     }
 
-    public void loadLevel() {
-        BufferedImage level = LoadSave.Loadimage(LoadSave.LEVEL_SPRITES);
-        levelimg = new BufferedImage[48];
-        for (int j = 0; j < 4; j += 1) {
-            for (int i = 0; i < 12; i += 1) {
-                leveldex = j * 12 + i;
-                levelimg[leveldex] = level.getSubimage(i * 32, j * 32, 32, 32);
-            }
-        }
-    }
+//    public void loadLevel() {
+//        BufferedImage level = LoadSave.Loadimage(LoadSave.LEVEL_SPRITES);
+//        levelimg = new BufferedImage[48];
+//        for (int j = 0; j < 4; j += 1) {
+//            for (int i = 0; i < 12; i += 1) {
+//                leveldex = j * 12 + i;
+//                levelimg[leveldex] = level.getSubimage(i * 32, j * 32, 32, 32);
+//            }
+//        }
+//    }
 
     public void render(Graphics2D g) {
         drawMap(g);
