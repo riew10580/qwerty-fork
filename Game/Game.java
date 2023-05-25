@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 
 public class Game implements Runnable {
 
+    // +
     private EnemyManager enemyManager;
     private GameWindow gamewindow;
     private GamePanel gamePanel;
@@ -19,6 +20,7 @@ public class Game implements Runnable {
     private LevelManager levelmanager;
     private Thread gameThread = new Thread(this);
     private BufferedImage bgimg;
+    // +
     private final int FPS_SET = 120;
     public int xLvlOffset;
     // Border help moving Graphics
@@ -28,6 +30,7 @@ public class Game implements Runnable {
     private int maxTilesOffset = lvlTilesWide - GamePanel.TILES_WIDTH;
     private int maxLvlOffsetX = maxTilesOffset * GamePanel.TILES_SIZE;
 
+    //+ start of the game
     public Game() {
 
         bgimg = LoadSave.Loadimage(LoadSave.BG_IMAGE);
@@ -45,6 +48,7 @@ public class Game implements Runnable {
         startGameLoop();
     }
 
+    // + create next level
     public void startNewLevel() {
         levelmanager.LoadNextLevel();
 
@@ -55,6 +59,7 @@ public class Game implements Runnable {
         enemyManager.loadNewEnemies();
     }
 
+    // + reset level
     public void reStartLevel() {
         levelmanager.ReloadThisLevel();
         player.setHP(player.getMaxHP());
@@ -63,18 +68,22 @@ public class Game implements Runnable {
         enemyManager.loadNewEnemies();
     }
 
+    // + getter
     public int getxLvlOffset() {
         return xLvlOffset;
     }
 
+    // + getter
     public LevelManager getLevelmanager() {
         return levelmanager;
     }
 
+    // ? doesn't use
     public EnemyManager getEnemyManager() {
         return enemyManager;
     }
 
+    // + useing to check player
     public void checkCloseToBorder() {
         int playerX = player.getHitbox().x;
         int diff = playerX;
@@ -86,6 +95,7 @@ public class Game implements Runnable {
         xLvlOffset = Math.max(Math.min(xLvlOffset, maxLvlOffsetX), 0);
     }
 
+    // + getter
     public Player getPlayer() {
         return this.player;
     }
@@ -98,10 +108,12 @@ public class Game implements Runnable {
         checkCloseToBorder();
     }
 
+    // +
     public void startGameLoop() {
         gameThread.start();
     }
 
+    // ? some equation use there
     public void run() {
         double timePerFrame = 1000000000.0 / FPS_SET;                           // game drawn
         long lastFrame = System.nanoTime();

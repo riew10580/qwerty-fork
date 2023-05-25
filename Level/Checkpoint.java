@@ -16,6 +16,7 @@ import java.awt.Rectangle;
  *
  * @author user
  */
+// ? cannot find
 public class Checkpoint extends MapPoint {
 
     public Checkpoint(int x, int y) {
