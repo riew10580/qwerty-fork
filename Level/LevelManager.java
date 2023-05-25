@@ -11,7 +11,9 @@ import java.util.ArrayList;
 
 public class LevelManager {
 
+    // +
     private int currentLevelNumber;
+    // +
     private BufferedImage levelimg[];
     private int leveldex;
     private Level currentLevel;
@@ -22,6 +24,7 @@ public class LevelManager {
 
     private int lastLvlNumber = 4;
 
+    // ? same 40 % in src/levels/Lavel.java 42-47
     public LevelManager(Game game) {
         currentLevelNumber = 1;
         loadLevel();                                                            // called TILESET
@@ -32,14 +35,17 @@ public class LevelManager {
         initGoal();
     }
 
+    // +
     public int getCurrentLevelNumber() {
         return currentLevelNumber;
     }
 
+    // +
     public Level getCurrentLevel() {
         return currentLevel;
     }
 
+    // +
     public void ReloadThisLevel() {
         System.out.println("1");
         this.currentLevel = null;
@@ -58,6 +64,7 @@ public class LevelManager {
         System.out.println("2");
     }
 
+    // +
     public void LoadNextLevel() {
         currentLevelNumber += 1;
         if (currentLevelNumber > lastLvlNumber) {
@@ -74,7 +81,7 @@ public class LevelManager {
         initGoal();
 
     }
-
+// same in src/levels/Lavel.java 49-66
 //    public void loadLevel() {
 //        BufferedImage level = LoadSave.Loadimage(LoadSave.LEVEL_SPRITES);
 //        levelimg = new BufferedImage[48];
@@ -86,13 +93,15 @@ public class LevelManager {
 //        }
 //    }
 
+    // +
     public void render(Graphics2D g) {
         drawMap(g);
         drawPoint(g);
         drawGoal(g);
     }
 
-    private void drawMap(Graphics2D g) {                                                     // Draw Map according to value from loadLevel 
+    // +
+    private void drawMap(Graphics2D g) {                                                     // Draw Map according to value from loadLevel
         for (int j = 0; j < GamePanel.TILES_HEIGHT; j += 1) {                                                // also move by xLvlOffset
             for (int i = 0; i < currentLevel.getlevelData()[0].length; i += 1) {                                 // but only move img, not the map collision
                 int index = currentLevel.getSpriteIndex(i, j);
@@ -102,17 +111,20 @@ public class LevelManager {
 
     }
 
+    // +
     private void drawPoint(Graphics2D g) {
         for (MapPoint mp : mappoint) {
             mp.update(g, game.getxLvlOffset());
         }
     }
 
+    // +
     private void drawGoal(Graphics2D g) {
         g.drawImage(goal.img, goal.getX() - game.getxLvlOffset(), goal.getY(), 64, 64, null);
         goal.updateCollision(game.getxLvlOffset());
     }
 
+    // +
     public void isPlayerTouchingPoint(Player player) {
         for (MapPoint point : mappoint) {
             if (point.isGettingTouchBy(player)) {
@@ -122,48 +134,59 @@ public class LevelManager {
 
     }
 
+    // +
     private void initMappoint() {
         this.mappoint = LoadSave.getMappoint(currentLevelNumber);
     }
 
+    // +
     private void initSpawn() {
         this.spawnpoint = null;
         this.spawnpoint = LoadSave.getSpawn(currentLevelNumber);
     }
 
+    // +
     public Spawn getSpawnPoint() {
         return this.spawnpoint;
     }
 
+    // +
     private void initGoal() {
         this.goal = null;
         this.goal = LoadSave.createGoal(currentLevelNumber, this);
     }
 
+    // +
     public boolean isPlayerinGoal(Player p) {
         return goal.collision.contains(p.getHitbox());
     }
 
+    // +
     public Goal getGoal() {
         return this.goal;
     }
 
+    // +
     public Game getGame() {
         return this.game;
     }
 
+    // ? didnt use
     public BufferedImage[] getLevelimg() {
         return levelimg;
     }
 
+    // ? didnt use
     public int getLeveldex() {
         return leveldex;
     }
 
+    // ? didnt use
     public ArrayList<MapPoint> getMappoint() {
         return mappoint;
     }
 
+    // ? didnt use
     public Spawn getSpawnpoint() {
         return spawnpoint;
     }

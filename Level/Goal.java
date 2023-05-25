@@ -14,6 +14,7 @@ import java.awt.Rectangle;
  *
  * @author user
  */
+// ? cannot find
 public class Goal extends MapPoint {
 
     private LevelManager manager;
