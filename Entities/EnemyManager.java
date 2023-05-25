@@ -18,10 +18,10 @@ public class EnemyManager {
     private ArrayList<Slime> slimes;
     private ArrayList<RangedMob> ranges;
 
-    public EnemyManager(Game game) {
-        this.game = game;
-        addEnemies();
-    }
+//    public EnemyManager(Game game) {
+//        this.game = game;
+//        addEnemies();
+//    }
 
     public void loadNewEnemies() {
         this.slimes.clear();
@@ -78,7 +78,7 @@ public class EnemyManager {
         drawSlime(g);
         drawRanges(g);
     }
-
+    //How is Calculate
     private void drawSlime(Graphics2D g) {
         for (Slime s : slimes) {
             if (s.isOnScreen()) {
@@ -91,7 +91,7 @@ public class EnemyManager {
             }
         }
     }
-
+    //How is Calculate
     private void drawRanges(Graphics2D g) {
         for (RangedMob r : ranges) {
             if (r.isOnScreen()) {

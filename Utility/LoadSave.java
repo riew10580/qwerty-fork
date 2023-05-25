@@ -17,7 +17,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-
+// same in src/utilz/LoadSave.java some Parameter in class
 public class LoadSave {
 
     public static final String PORTRAIT = "Portrait.png";
