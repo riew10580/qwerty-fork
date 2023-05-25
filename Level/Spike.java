@@ -13,6 +13,8 @@ import java.awt.Graphics2D;
  *
  * @author user
  */
+
+ // +
 public class Spike extends Hazard {
 
     public Spike(int x, int y) {

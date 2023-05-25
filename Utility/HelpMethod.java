@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 
 public class HelpMethod {
 
+    //src/utilz/HelpMethods.java 10-17
     public static boolean CanMove(int x, int y, int width, int height, int[][] levelData, int xLvlOffset) {
         if (IsSolid(x, y, levelData, xLvlOffset) == false) {
             if (IsSolid(x + width, y + height, levelData, xLvlOffset) == false) {
@@ -22,7 +23,7 @@ public class HelpMethod {
         }
         return false;
     }
-
+    // +
     public static boolean inAirCheck(int x, int y, int[][] levelData) {
         int Xindex = x / GamePanel.TILES_SIZE;
         int Yindex = y / GamePanel.TILES_SIZE;
@@ -70,6 +71,7 @@ public class HelpMethod {
 //        return true;
 //    }
 
+    // +
     public static boolean isLOSclear(Player p, Enemy e, int[][] levelData, int xLvlOffset) {
         if (p.getX() <= e.getX()) {
             return isAllTileSolid(p.getX(), e.getY(), e.getX(), levelData, xLvlOffset);

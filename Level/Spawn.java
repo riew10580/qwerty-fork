@@ -8,6 +8,8 @@ package Level;
  *
  * @author user
  */
+
+// +
 public class Spawn extends Checkpoint{
     
     public Spawn(int x, int y){

@@ -10,6 +10,8 @@ import Entities.Player;
  *
  * @author user
  */
+
+// +
 public interface Touchable {
     
     public boolean isGettingTouchBy(Player p);

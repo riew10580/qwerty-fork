@@ -21,6 +21,7 @@ import java.awt.image.BufferedImage;
  *
  * @author user
  */
+// +
 public class Arrow {
 
     private Rectangle hitbox;

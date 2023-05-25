@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
  *
  * @author user
  */
+
+// +
 public abstract class MapPoint implements Touchable {
 
     protected int x, y;

@@ -3,6 +3,7 @@ package Utility;
 import Game.GamePanel;
 import java.awt.event.*;
 
+// +
 public class MouseInputs implements MouseListener, MouseMotionListener {
 
     private GamePanel mouse;
