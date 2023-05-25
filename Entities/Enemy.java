@@ -17,14 +17,19 @@ import static Utility.HelpMethod.isLOSclear;
 
 public abstract class Enemy extends Entity {
 
+    // +
     protected int attackRange;
     protected int PlayerDetectionRangeX, PlayerDectectionRangeY;
     protected int enemyType;                                                 // type of enemy i.e slime , skeleton, creeper, etc
     protected int enemyActions;                                                 // i.e 1 for IDLE 2 for RUNNING 3 for ATTACK 4 for DEAD
+    // +
     protected boolean allowAttack;
+    // +
     protected int attackInterval;
     protected int attacktick;
+    // +
     protected int walkSpeed;
+    // +
     protected boolean alert;
     protected EnemyManager enemyManager;
 
@@ -38,6 +43,7 @@ public abstract class Enemy extends Entity {
         this.alert = false;
     }
 
+    // +
     public void updateAnimations() {
         setAnimation();
         updateIFrame();
@@ -52,6 +58,7 @@ public abstract class Enemy extends Entity {
         }
     }
 
+    // +
     public boolean isOnScreen() {
         return (this.x - game.getxLvlOffset() >= -200 && this.x - game.getxLvlOffset() <= GAME_WIDTH);
 
@@ -61,6 +68,7 @@ public abstract class Enemy extends Entity {
         this.enemyActions = enemyActions;
     }
 
+    // +
     public void update() {
         updateAnimations();
         updateHitbox();
@@ -70,18 +78,20 @@ public abstract class Enemy extends Entity {
         move(game.getLevelmanager().getCurrentLevel().getlevelData());
     }
 
+    // + : call from Enemy.update()
     public void PlayerInteraction(Player player) {
         checkContactPlayer(player);
         this.isGettingHit(player);
     }
 
+    // + : call from Enemy.PlayerInteraction(Player p)
     public void isGettingHit(Player p) {
         if (p.getAttackbox() != null && !iframe && this.hitbox.intersects(p.getAttackbox().getHitbox())) {
             this.getHit(p);
         }
-
     }
 
+    // + : call from Enemy.PlayerInteraction(Player p)
     private void checkContactPlayer(Player player) {
         if (!player.iframe && this.hitbox.intersects(player.getHitbox())) {     // if player is not in iframe player will get hit
             player.getHit(this);
@@ -103,6 +113,7 @@ public abstract class Enemy extends Entity {
 
     protected abstract void updateBehavior();
 
+    // + : add facing logic
     protected void turntoPlayer(Player p) {
         if (facing != -1 && p.getX() < this.getX()) {
             this.facing = -1;
@@ -111,13 +122,16 @@ public abstract class Enemy extends Entity {
         }
     }
 
+    // +
     protected boolean PlayerInAttackRange(Player p) {
         int deltaX = Math.abs(p.getX() - this.getX());
         return deltaX <= attackRange;
     }
 
+    // + : to override attack pattern for each `Enemy` type
     protected abstract void attackPlayer(Player p);
 
+    // + : call from update()
     protected void updateAttackInterval() {
         if (!allowAttack) {
             attacktick++;
@@ -128,6 +142,7 @@ public abstract class Enemy extends Entity {
         }
     }
 
+    // ? : checkEdge from tutorial logic
     protected void move(int[][] levelData) {
         if (!alert && checkEdge(levelData)) {
             this.facing *= -1;
@@ -148,6 +163,7 @@ public abstract class Enemy extends Entity {
         return enemyActions;
     }
 
+    
     protected void updatePos(int walkSpeed, int[][] levelData) {
         checkInAir(levelData);
         this.x += walkSpeed;

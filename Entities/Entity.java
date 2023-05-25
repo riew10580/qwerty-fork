@@ -18,6 +18,7 @@ public abstract class Entity {
     protected boolean active;
     protected boolean moving;
 
+    // +
     protected int facing;
     protected double airSpeed = 0;
     protected double gravity = 0.2;
@@ -27,7 +28,11 @@ public abstract class Entity {
     protected int frameDuration = 15, frameTime, animationIndex;
 
     protected int iframetick, iframeDuration = 75;
+
+    // + : add for delay invicible
     protected boolean iframe;
+
+    // + :
     protected boolean allowAnimReset = true;
 
     public Entity(int x, int y, int width, int height, Game game) {
@@ -35,10 +40,13 @@ public abstract class Entity {
         this.y = y;
         this.width = width;
         this.height = height;
+
+        // +
         hitbox = new Rectangle(x, y, width, height);
         this.facing = 1;
         this.active = true;
         this.game = game;
+        // */
     }
 
     public Game getGame() {
@@ -105,6 +113,7 @@ public abstract class Entity {
         return attackDamage;
     }
 
+    // +
     protected void updateIFrame() {
         if (this.iframe) {
             iframetick++;
@@ -115,6 +124,7 @@ public abstract class Entity {
         }
     }
 
+    // +
     // get hit by PlayerAttack
     public void getHit(Entity e) {
         if (!this.iframe) {
@@ -130,6 +140,7 @@ public abstract class Entity {
         }
     }
 
+    // +
     // getHit by Hazard point (spike, hole, etc)
     public void getHit() {
         this.setHP(this.getHP() - (int) this.getMaxHP() / 10);
@@ -159,6 +170,7 @@ public abstract class Entity {
         this.height = height;
     }
 
+    // + : from stackoverflow; set opacity entity
     public void setOpacity(Graphics2D g) {
         if (iframe) {
             AlphaComposite alcom = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.5);

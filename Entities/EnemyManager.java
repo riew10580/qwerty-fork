@@ -88,7 +88,6 @@ public class EnemyManager {
                 } else {
                     g.drawImage(s.getSlimeSprite()[s.getEnemyActions()][s.getAnimationIndex()], s.getX() - game.getxLvlOffset() + 128, s.getY() - 32, 128 * -1, 128, null);
                 }
-
             }
         }
     }

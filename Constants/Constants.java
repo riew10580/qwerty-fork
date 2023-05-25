@@ -5,6 +5,7 @@ import Game.GamePanel;
 
 public class Constants {
 
+    // - : from tutorial resource
     // PLAYER
     public static final int IDLE = 0;
     public static final int RUNNING = 1;
@@ -12,7 +13,9 @@ public class Constants {
     public static final int FALLING = 3;
     public static final int ATTACK = 4;
     public static final int HIT = 5;
+    // - */
 
+    // ? : concept like tutorial but difference type
     // PLAYER
     // ENEMY TYPE
     public static final int TYPE_SLIME = 100;
@@ -28,6 +31,7 @@ public class Constants {
     public static final int RANGE_MOVING = 1;
     public static final int RANGE_DIE = 2;
 
+    // - : from tutorial
     // ENEMY ACTIONS
     public static int GetSpriteAmount(int actions) {
         switch (actions) {
@@ -56,6 +60,7 @@ public class Constants {
 
     }
 
+    // ? : like tutorial but add a overload method
     public static int GetSpriteAmount(int enemyType, int enemyActions) {
         switch (enemyType) {
             case TYPE_SLIME -> {
