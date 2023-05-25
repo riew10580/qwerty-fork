@@ -133,64 +133,64 @@ public class Player extends Entity {
         }
     }
 
-    public void jump() {
-        if (attacking || inAir) {                                                            // if inAir , can't jump
-            return;
-        }
-        inAir = true;
-        airSpeed = jumpSpeed;
-    }
-
-    public void updatePos() {
-
-        moving = false;
-        int speed1 = 0;
-        if (jump) {
-            this.actions = Constants.JUMP;
-            jump();
-        }
-        if (!left && !right && !inAir) {
-            this.actions = Constants.IDLE;
-            moving = false;
-            return;
-        }
-        if (left && !right) {
-            this.actions = Constants.RUNNING;
-            speed1 = -3;
-            facing = -1;
-        }
-        if (right && !left) {
-            this.actions = Constants.RUNNING;
-            speed1 = 3;
-            facing = 1;
-        }
-        if (!inAir) {
-            this.allowPlayerAttack = true;
-            if (HelpMethod.IsEntityOnFloor(hitbox, game.getLevelmanager().getCurrentLevel().getlevelData(), game.getxLvlOffset()) == false) {       // if not inAir and there's not floor, then Player is inAir                                               
-                inAir = true;                                                   // aka walk of the ledge
-            }
-        }
-        if (inAir) {
-            this.allowPlayerAttack = false;
-            if (HelpMethod.CanMove((hitbox.x), (int) (hitbox.y + airSpeed), hitbox.width, hitbox.height, game.getLevelmanager().getCurrentLevel().getlevelData(), game.getxLvlOffset())) {          // if Player remains inAir and is able to move inAir
-                this.y += airSpeed;                                             // move Player down due to gravity
-                airSpeed += gravity;                                            // increase downward speed as Player still remains inAir
-                updateXPos(speed1);
-            } else {
-                if (airSpeed > 0) {
-                    inAir = false;
-                    this.allowPlayerAttack = true;
-                    airSpeed = 0;
-                } else {
-                    airSpeed = fallSpeedAfterCollision;
-                }
-                updateXPos(speed1);
-            }
-        } else {
-            updateXPos(speed1);
-        }
-        moving = true;
-    }
+//    public void jump() {
+//        if (attacking || inAir) {                                                            // if inAir , can't jump
+//            return;
+//        }
+//        inAir = true;
+//        airSpeed = jumpSpeed;
+//    }
+//
+//    public void updatePos() {
+//
+//        moving = false;
+//        int speed1 = 0;
+//        if (jump) {
+//            this.actions = Constants.JUMP;
+//            jump();
+//        }
+//        if (!left && !right && !inAir) {
+//            this.actions = Constants.IDLE;
+//            moving = false;
+//            return;
+//        }
+//        if (left && !right) {
+//            this.actions = Constants.RUNNING;
+//            speed1 = -3;
+//            facing = -1;
+//        }
+//        if (right && !left) {
+//            this.actions = Constants.RUNNING;
+//            speed1 = 3;
+//            facing = 1;
+//        }
+//        if (!inAir) {
+//            this.allowPlayerAttack = true;
+//            if (HelpMethod.IsEntityOnFloor(hitbox, game.getLevelmanager().getCurrentLevel().getlevelData(), game.getxLvlOffset()) == false) {       // if not inAir and there's not floor, then Player is inAir
+//                inAir = true;                                                   // aka walk of the ledge
+//            }
+//        }
+//        if (inAir) {
+//            this.allowPlayerAttack = false;
+//            if (HelpMethod.CanMove((hitbox.x), (int) (hitbox.y + airSpeed), hitbox.width, hitbox.height, game.getLevelmanager().getCurrentLevel().getlevelData(), game.getxLvlOffset())) {          // if Player remains inAir and is able to move inAir
+//                this.y += airSpeed;                                             // move Player down due to gravity
+//                airSpeed += gravity;                                            // increase downward speed as Player still remains inAir
+//                updateXPos(speed1);
+//            } else {
+//                if (airSpeed > 0) {
+//                    inAir = false;
+//                    this.allowPlayerAttack = true;
+//                    airSpeed = 0;
+//                } else {
+//                    airSpeed = fallSpeedAfterCollision;
+//                }
+//                updateXPos(speed1);
+//            }
+//        } else {
+//            updateXPos(speed1);
+//        }
+//        moving = true;
+//    }
 
     public void updateXPos(int speed1) {
         if (!attacking & HelpMethod.CanMove((hitbox.x) + speed1, (hitbox.y), hitbox.width, hitbox.height, game.getLevelmanager().getCurrentLevel().getlevelData(), game.getxLvlOffset())) {                      // if next point in Player direction is walkable
@@ -206,34 +206,34 @@ public class Player extends Entity {
         int Yindex = (y / TILES_SIZE);
     }
 
-    public void setAnimation() {
-        int startAni = this.actions;
-        if (moving) {
-            this.setActions(Constants.RUNNING);
-        } else {
-            this.setActions(Constants.IDLE);
-        }
-
-        if (inAir) {
-            if (airSpeed < 0) {
-                this.setActions(Constants.JUMP);
-            } else {
-                this.setActions(Constants.FALLING);
-            }
-        }
-        if (allowPlayerAttack && attacking) {
-            this.setActions(Constants.ATTACK);
-        }
-        // some weird animation glitch happen when change animation change to attack  FIXED
-        if (allowAnimReset && startAni != this.actions) {                                         // change ani = reset to first frame
-            //somehow this thing is exclusive for attack animation
-            allowAnimReset = false;
-            frameTime = 0;
-            animationIndex = 0;
-
-        }
-
-    }
+//    public void setAnimation() {
+//        int startAni = this.actions;
+//        if (moving) {
+//            this.setActions(Constants.RUNNING);
+//        } else {
+//            this.setActions(Constants.IDLE);
+//        }
+//
+//        if (inAir) {
+//            if (airSpeed < 0) {
+//                this.setActions(Constants.JUMP);
+//            } else {
+//                this.setActions(Constants.FALLING);
+//            }
+//        }
+//        if (allowPlayerAttack && attacking) {
+//            this.setActions(Constants.ATTACK);
+//        }
+//        // some weird animation glitch happen when change animation change to attack  FIXED
+//        if (allowAnimReset && startAni != this.actions) {                                         // change ani = reset to first frame
+//            //somehow this thing is exclusive for attack animation
+//            allowAnimReset = false;
+//            frameTime = 0;
+//            animationIndex = 0;
+//
+//        }
+//
+//    }
 
     public void updateAnimations() {
         frameTime += 1;
